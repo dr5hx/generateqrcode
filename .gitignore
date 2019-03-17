@@ -7,13 +7,9 @@
 *.iml
 out
 gen
-.gitignore
 .idea/
+.mvn
 .mvn/
 generateqrcode.iml
-/target
-target/classes/com/
-target/generated-sources/
-target/generated-test-sources/
-target/generateqrcode-0.0.1-SNAPSHOT.jar
-target/test-classes/
+target
+target/
