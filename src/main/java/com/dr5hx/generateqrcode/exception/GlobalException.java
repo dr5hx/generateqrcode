@@ -6,10 +6,13 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+/**
+ * 此处是全局的异常处理
+ */
 @ControllerAdvice("com.dr5hx.generateqrcode.controller")
 public class GlobalException {
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(RuntimeException.class)
     @ResponseBody
     public Response handlerException() {
         return Response.ERROR();
