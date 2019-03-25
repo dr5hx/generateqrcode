@@ -15,6 +15,7 @@ public class GlobalException {
     @ExceptionHandler(RuntimeException.class)
     @ResponseBody
     public Response handlerException() {
+        System.out.println("????????????/");
         return Response.ERROR();
     }
 

@@ -68,4 +68,11 @@ public class Response {
         response.setMsg("接口存在问题");
         return response;
     }
+
+    public static Response ERROR(String msg) {
+        Response response = new Response();
+        response.setCode(-1);
+        response.setMsg(msg);
+        return response;
+    }
 }
