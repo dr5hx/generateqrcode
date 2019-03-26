@@ -14,8 +14,10 @@ public class GlobalException {
 
     @ExceptionHandler(RuntimeException.class)
     @ResponseBody
-    public Response handlerException() {
-        System.out.println("????????????/");
+    public Response handlerException(RuntimeException e) {
+
+        e.printStackTrace();
+
         return Response.ERROR();
     }
 

@@ -3,13 +3,14 @@ package com.dr5hx.generateqrcode.controller;
 import com.dr5hx.generateqrcode.entity.User;
 import com.dr5hx.generateqrcode.response.Response;
 import com.dr5hx.generateqrcode.service.UserService;
+import com.dr5hx.generateqrcode.util.NullCheckTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 public class QRCodeController {
@@ -21,32 +22,31 @@ public class QRCodeController {
         return Response.FAILURE();
     }
 
+
     @GetMapping("/test/user")
-    public Response addUser() {
-        User user = getUser();
-        Integer insert = userService.insert(user);
-        return Response.SUCCESS(insert);
-
-    }
-
-    private User getUser() {
+    public Response addUser(String userList) {
+        boolean flag = NullCheckTools.checkObjectIsNotNull(userList);
+        if (!flag) {
+            return Response.FAILURE("请求参数不可为空");
+        }
+        List<User> users = new ArrayList<>();
         User user = new User();
-        user.setId(100L);
-        Timestamp registerTime = new Timestamp(new Date().getTime());
+        Date registerTime = new Date();
         user.setRegisterTime(registerTime);
         user.setUpdateTime(registerTime);
+        user.setUserPassword("123");
+        user.setUserSalt("123");
         user.setUserName("dr5hx");
-        user.setUserPassword("123456");
-        user.setUserSalt("2015");
-        return user;
+        users.add(user);
+        boolean b = userService.addUser(users);
+        if (b) {
+            return Response.SUCCESS("添加成功");
+        } else {
+            return Response.FAILURE("添加失败");
+
+        }
+
     }
 
-//    @GetMapping("/test/user01")
-//    public Response addUser01() {
-//        User user = getUser();
-//        Integer insert = userService01.insert(user);
-//        return Response.SUCCESS(insert);
-//
-//    }
 
 }

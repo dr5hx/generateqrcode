@@ -48,6 +48,13 @@ public class Response {
         return response;
     }
 
+    public static Response SUCCESS(String msg) {
+        Response response = new Response();
+        response.setCode(1);
+        response.setMsg(msg);
+        return response;
+    }
+
     public static Response FAILURE() {
         Response response = new Response();
         response.setCode(0);
