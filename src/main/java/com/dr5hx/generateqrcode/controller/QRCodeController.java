@@ -3,7 +3,9 @@ package com.dr5hx.generateqrcode.controller;
 import com.dr5hx.generateqrcode.entity.User;
 import com.dr5hx.generateqrcode.response.Response;
 import com.dr5hx.generateqrcode.service.UserService;
-import com.dr5hx.generateqrcode.util.NullCheckTools;
+import com.dr5hx.generateqrcode.util.UtilsTools;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,10 +24,11 @@ public class QRCodeController {
         return Response.FAILURE();
     }
 
-
+    @ApiOperation(value = "获取用户详细信息", notes = "根据id来获取用户详细信息")
+    @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "String", paramType = "path")
     @GetMapping("/test/user")
     public Response addUser(String userList) {
-        boolean flag = NullCheckTools.checkObjectIsNotNull(userList);
+        boolean flag = UtilsTools.checkObjectIsNotNull(userList);
         if (!flag) {
             return Response.FAILURE("请求参数不可为空");
         }

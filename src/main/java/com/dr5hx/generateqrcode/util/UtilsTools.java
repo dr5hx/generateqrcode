@@ -1,6 +1,6 @@
 package com.dr5hx.generateqrcode.util;
 
-public class NullCheckTools {
+public class UtilsTools {
     public static boolean checkObjectIsNotNull(Object o) {
         if (o != null) {
             Class<?> className = o.getClass();
