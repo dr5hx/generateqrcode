@@ -8,3 +8,4 @@ gen
 generateqrcode.iml
 target
 target/
+/logs/
